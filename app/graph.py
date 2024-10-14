@@ -4,7 +4,7 @@ import numpy as np
 from numpy import linalg as la
 import math
 import scipy
-from tabulate import tabulate
+from tabulate import tabulate # Needed only if you want adj matrix as tex table
 from matplotlib.colors import ListedColormap
 
 def update(x, rule, n):
@@ -48,8 +48,10 @@ def pOne():
     adj = nx.to_numpy_array(g)
     # NOTE: Need to change 04b when updating N
     headers = [f'{x:04b}' for x in range(2**N)]
-    with open('output/qOneAdj.txt', 'w') as f:
+    with open('output/one/adj.tex', 'w') as f:
         print(tabulate(adj, headers, tablefmt="latex"), file=f)
+    np.savetxt('output/one/adj.csv', adj, delimiter=',', header=','.join([f'{x:04b}' for x in range(2**N)]), fmt='%i')
+    
 
     plt.savefig(f'output/qOne.png')
     plt.close()
