@@ -46,6 +46,7 @@ def pOne():
     # plt.show()
     # print(nx.adjacency_matrix(g))
     adj = nx.to_numpy_array(g)
+    plt.savefig(f'output/one/graph.png')
     # NOTE: Need to change 04b when updating N
     headers = [f'{x:04b}' for x in range(2**N)]
     with open('output/one/adj.tex', 'w') as f:
@@ -53,5 +54,4 @@ def pOne():
     np.savetxt('output/one/adj.csv', adj, delimiter=',', header=','.join([f'{x:04b}' for x in range(2**N)]), fmt='%i')
     
 
-    plt.savefig(f'output/qOne.png')
     plt.close()
